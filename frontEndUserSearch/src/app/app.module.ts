@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { UserSearchService } from './services/user-search.service';
 
 
 @NgModule({
@@ -12,7 +13,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
   ],
-  providers: [],
+  providers: [ UserSearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
