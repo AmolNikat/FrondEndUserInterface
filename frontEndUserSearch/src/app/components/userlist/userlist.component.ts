@@ -10,9 +10,16 @@ export class UserlistComponent implements OnInit {
   @Input() userlist: any;
   @Input() totalCount: any;
 
+  toggle = true;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toggleButton() {
+
+    this.toggle = !this.toggle;
   }
 
 }

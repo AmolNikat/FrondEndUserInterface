@@ -1,11 +1,17 @@
 <div>
 
     total count : {{ totalCount}}
-<div>
-  <img [src]="" alt="">
-</div>
-    <div *ngFor = "let user of userlist">
-      <img [src]="user.avatar_url" alt="Image" class="image-class">
-      <p> Profile Url {{user.html_url}} </p>
-    </div>
+      <div>
+        <img [src]="" alt="">
+      </div>
+  <div *ngFor = "let user of userlist">
+        <img [src]="user.avatar_url" alt="Image" class="image-class">
+        <p> Profile Url {{user.html_url}} </p>
+   
+
+    <button  *ngIf = "toggle" type="button" (click) = "toggleButton()">Details</button>
+    <button  *ngIf = "!toggle" type="button" (click) = "toggleButton()">Collapse</button>
+
   </div>
+
+</div>
