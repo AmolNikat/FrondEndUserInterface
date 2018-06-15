@@ -1,8 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<div class="container">
   <h1>
-    Welcome to {{ title }}!
+    Welcome to Search User Interface!
   </h1>
+
+  <select (change) = "sortOptionChanged($event)">
+
+    <option *ngFor = "let option of dropDownOptions" [value] = "option.Key">
+      {{option.Value}}
+
+    </option>
+
+  </select>
 </div>
 
 
