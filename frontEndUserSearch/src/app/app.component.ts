@@ -46,6 +46,8 @@ export class AppComponent implements OnInit {
         if (result) {
           this.totalCount = result.total_count;
           this.userSearchResults = result.items;
+          console.log(result);
+          
         } else {
           this.totalCount = 0;
           this.userSearchResults = null;

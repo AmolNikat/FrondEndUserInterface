@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { UserSearchService } from '../../services/user-search.service';
 
 @Component({
   selector: 'app-userlist',
@@ -11,13 +12,27 @@ export class UserlistComponent implements OnInit {
   @Input() totalCount: any;
 
   toggle = true;
+  userDetails: any;
 
-  constructor() { }
+  constructor(private userSearchService: UserSearchService) { }
 
   ngOnInit() {
   }
 
-  toggleButton() {
+  fetchUserDetails(username: string) {
+    this.toggle = !this.toggle;
+
+
+    this.userSearchService.getUserDetails(username).subscribe(result => {
+
+      this.userDetails = result;
+      console.log(result);
+
+    });
+
+  }
+
+  removeUserDetails() {
 
     this.toggle = !this.toggle;
   }

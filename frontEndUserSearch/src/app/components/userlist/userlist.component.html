@@ -9,9 +9,11 @@
         <p> Profile Url {{user.html_url}} </p>
    
 
-    <button  *ngIf = "toggle" type="button" (click) = "toggleButton()">Details</button>
-    <button  *ngIf = "!toggle" type="button" (click) = "toggleButton()">Collapse</button>
+    <button  *ngIf = "toggle" type="button" (click) = "fetchUserDetails(user.login)">Details</button>
+    <button  *ngIf = "!toggle" type="button" (click) = "removeUserDetails()">Collapse</button>
 
   </div>
+
+  <app-user-details *ngIf = "!toggle" [user] = "userDetails"></app-user-details>
 
 </div>

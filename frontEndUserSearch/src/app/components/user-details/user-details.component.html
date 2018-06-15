@@ -1,3 +1,11 @@
 <p>
   user-details works!
 </p>
+<div *ngFor = "let user of user">
+  <p>{{user.name}}</p>
+  <p>{{user.language}}</p>
+  <p>Open Issues Count: {{user.open_issues_count}}</p>
+  <p>Star Count: {{user.stargazers_count}}</p>
+  <p>Followers Count: {{user.watchers_count}}</p>
+  <p>Fork Count: {{user.forks_count}}</p>
+</div>

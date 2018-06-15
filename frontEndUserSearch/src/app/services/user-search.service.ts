@@ -7,6 +7,8 @@ import 'rxjs/add/observable/of';
 export class UserSearchService {
 
   searchbaseUrl = 'https://api.github.com/search/users?q=';
+  userDetailsBaseUrl = 'https://api.github.com/users/';
+  userDetailsEnd = '/repos';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -24,5 +26,14 @@ export class UserSearchService {
     }
 
   }
+
+getUserDetails(username: string) {
+
+  const fullUrl = this.userDetailsBaseUrl + username + this.userDetailsEnd;
+
+  console.log(fullUrl);
+
+  return this.httpClient.get(fullUrl);
+}
 
 }
