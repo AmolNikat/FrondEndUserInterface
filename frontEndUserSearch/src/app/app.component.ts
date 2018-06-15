@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
   currentSortOrder = SortOrderType.NASC;
 
   userSearchResults: any = [];
+  totalCount: number;
 
   searchControl: FormControl = new FormControl();
 
@@ -41,8 +42,13 @@ export class AppComponent implements OnInit {
     .subscribe(value => {
       this.userSearchService.getUserSearchResults(value).subscribe(result => {
 
-        this.userSearchResults = result;
-        console.log('data', this.userSearchResults);
+        if (result) {
+          this.totalCount = result.total_count;
+          this.userSearchResults = result.items;
+        } else {
+          this.totalCount = 0;
+          this.userSearchResults = null;
+        }
     });
 
     });

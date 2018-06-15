@@ -15,6 +15,15 @@
   <div class="keyword-wrapper">
     <input [formControl]="searchControl" type="text" id="search" placeholder="search for users..." autofocus/>
   </div>
+
+  <div>
+
+    total count : {{ totalCount}}
+
+    <p *ngFor = "let user of userSearchResults">
+      {{user}}
+    </p>
+  </div>
 </div>
 
 
