@@ -13,6 +13,7 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 // import 'rxjs/Observable';
 
 import 'rxjs/observable';
+import { logWarnings } from 'protractor/built/driverProviders';
 
 @Component({
   selector: 'app-root',
@@ -47,7 +48,6 @@ export class AppComponent implements OnInit {
           this.totalCount = result.total_count;
           this.userSearchResults = result.items;
           console.log(result);
-          
         } else {
           this.totalCount = 0;
           this.userSearchResults = null;
@@ -59,6 +59,28 @@ export class AppComponent implements OnInit {
   sortOptionChanged(event: any) {
 
     console.log(event.target.value);
+
+    if (event.target.value === SortOrderType.NDSC.toString()) {
+      console.log('sorting dsc name');
+
+      this.userSearchResults.sort((a: any, b: any) => {
+
+        const c = a['login'].toLowerCase();
+        const d = b['login'].toLowerCase();
+        if ( c < d) {
+
+          return 1;
+
+        } else if (c > d) {
+          return -1;
+        } else {
+          return 0;
+        }
+
+
+      });
+      
+    }
 
   }
 
