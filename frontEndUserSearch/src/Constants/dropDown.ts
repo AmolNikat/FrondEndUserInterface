@@ -1,8 +1,8 @@
 
 
 export const dropDownList = [
-    {'Key': 'NASC', 'Value': 'Name (A-Z)'},
-    {'Key': 'NDSC', 'Value': 'Name (Z-A)'},
-    {'Key': 'RASC', 'Value': 'Rank (Aecending)'},
-    {'Key': 'RDSC', 'Value': 'Rank (Descending)'}
+    {'Key': '0', 'Value': 'Name (A-Z)'},
+    {'Key': '1', 'Value': 'Name (Z-A)'},
+    {'Key': '2', 'Value': 'Rank (Aecending)'},
+    {'Key': '3', 'Value': 'Rank (Descending)'}
 ];
