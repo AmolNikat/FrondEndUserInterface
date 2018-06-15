@@ -7,12 +7,14 @@ import { UserSearchService } from './services/user-search.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserlistComponent } from './components/userlist/userlist.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserlistComponent
+    UserlistComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
