@@ -38,9 +38,10 @@ export class AppComponent implements OnInit {
     this.searchControl.valueChanges
     .pipe(
       debounceTime(400),
-      distinctUntilChanged())
-    .subscribe(value => {
-      this.userSearchService.getUserSearchResults(value).subscribe(result => {
+      distinctUntilChanged(),
+      switchMap((value: string) =>
+      this.userSearchService.getUserSearchResults(value)))
+    .subscribe(result => {
 
         if (result) {
           this.totalCount = result.total_count;
@@ -49,8 +50,6 @@ export class AppComponent implements OnInit {
           this.totalCount = 0;
           this.userSearchResults = null;
         }
-    });
-
     });
 
   }
