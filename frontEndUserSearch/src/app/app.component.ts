@@ -2,6 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { dropDownList } from './Constants/dropDown';
 import { SortOrderType } from './enums/sortOrderType';
 import { UserSearchService } from './services/user-search.service';
+import { FormControl } from '@angular/forms';
+
+
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+
+ // import 'rxjs/add/operator/debounceTime';
+ import 'rxjs/add/operator/distinctUntilChanged';
+ import 'rxjs/add/operator/switchMap';
+// import 'rxjs/Observable';
+
+import 'rxjs/observable';
 
 @Component({
   selector: 'app-root',
@@ -14,15 +25,28 @@ export class AppComponent implements OnInit {
   dropDownOptions = dropDownList;
   currentSortOrder = SortOrderType.NASC;
 
-  userSearchResults: any;
+  userSearchResults: any = [];
 
-  constructor(private userSearchService: UserSearchService) {
+  searchControl: FormControl = new FormControl();
 
-  }
+  constructor(private userSearchService: UserSearchService) { }
+
 
   ngOnInit() {
 
-    this.searchUser('amol');
+    this.searchControl.valueChanges
+    .pipe(
+      debounceTime(400),
+      distinctUntilChanged())
+    .subscribe(value => {
+      this.userSearchService.getUserSearchResults(value).subscribe(result => {
+
+        this.userSearchResults = result;
+        console.log('data', this.userSearchResults);
+    });
+
+    });
+
   }
 
   sortOptionChanged(event: any) {
@@ -38,7 +62,7 @@ export class AppComponent implements OnInit {
       this.userSearchResults = data;
 
       console.log('data', data);
-      
+
 
     });
   }
