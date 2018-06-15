@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { dropDownList } from '../Constants/dropDown';
-import { SortOrderType } from '../enums/sortOrderType';
+import { Component, OnInit } from '@angular/core';
+import { dropDownList } from './Constants/dropDown';
+import { SortOrderType } from './enums/sortOrderType';
+import { UserSearchService } from './services/user-search.service';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +9,20 @@ import { SortOrderType } from '../enums/sortOrderType';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   dropDownOptions = dropDownList;
   currentSortOrder = SortOrderType.NASC;
 
-  constructor() {
+  userSearchResults: any;
 
+  constructor(private userSearchService: UserSearchService) {
+
+  }
+
+  ngOnInit() {
+
+    this.searchUser('amol');
   }
 
   sortOptionChanged(event: any) {
@@ -23,5 +31,16 @@ export class AppComponent {
 
   }
 
+  searchUser(user: string) {
+
+    this.userSearchService.getUserSearchResults(user).subscribe(data => {
+
+      this.userSearchResults = data;
+
+      console.log('data', data);
+      
+
+    });
+  }
 
 }
