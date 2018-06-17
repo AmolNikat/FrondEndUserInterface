@@ -35,6 +35,7 @@ export class UserlistComponent implements OnInit {
   removeUserDetails() {
 
     this.toggle = !this.toggle;
+    this.userDetails = null;
   }
 
 }
